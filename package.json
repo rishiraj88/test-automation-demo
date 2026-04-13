@@ -1,0 +1,33 @@
+{
+  "name": "ai-animal-art",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "unit-test": "npx mocha test/unit/*.js",
+    "integration-test": "npx mocha test/integration/*.js",
+    "ui-test": "npx mocha test/UI/*.js",
+    "test": "npm run unit-test && npm run integration-test && npm run ui-test",
+    "test-coverage": "nyc mocha test/unit/*.js test/integration/*.js test/UI/*.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "chai": "^5.2.0",
+    "chai-http": "^5.1.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mocha": "^10.2.0",
+    "selenium-webdriver": "^4.31.0",
+    "sinon": "^20.0.0",
+    "sqlite3": "^5.1.7",
+    "supertest": "^7.1.0"
+  },
+  "devDependencies": {
+    "chromedriver": "^135.0.4",
+    "nyc": "^17.1.0"
+  }
+}

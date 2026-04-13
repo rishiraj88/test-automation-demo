@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>AI Animal Art</title>
+  <style>
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #f8f8f8;
+      border-bottom: 1px solid #ddd;
+    }
+
+    header .app-name {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    header .cart-link {
+      font-size: 18px;
+      text-decoration: none;
+      color: #333;
+    }
+
+    header .cart-link span {
+      font-weight: bold;
+      color: #007bff;
+    }
+
+    ul {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      /* 5 items per row */
+      gap: 20px;
+      /* Space between grid items */
+      list-style: none;
+      /* Remove bullet points */
+      padding: 0;
+      /* Remove default padding */
+    }
+
+    li {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+
+    li img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    li h2 {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    li p {
+      margin: 5px 0;
+    }
+
+    li form {
+      margin-top: 10px;
+    }
+
+    .notification {
+      background-color: #d4edda;
+      color: #155724;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #c3e6cb;
+      border-radius: 5px;
+    }
+  </style>
+  <script>
+    setTimeout(() => {
+      const notification = document.querySelector('.notification');
+      if (notification) {
+        notification.style.display = 'none';
+      }
+    }, 3000); // Hide after 3 seconds
+  </script>
+</head>
+
+<body>
+  <header>
+    <div class="app-name">AI animal art</div>
+    <a href="/cart" id="cart-link">Cart (<span>
+        <%= cartCount %>
+      </span>)</a>
+  </header>
+  <h1>AI art for sale</h1>
+  <% if (message) { %>
+    <div class="notification">
+      <%= decodeURIComponent(message) %>
+    </div>
+    <% } %>
+      <ul>
+        <% items.forEach(item=> { %>
+          <li>
+            <img src="<%= item.image_url %>" alt="<%= item.name %>" width="150">
+            <h2>
+              <%= item.name %>
+            </h2>
+            <p>Price: $<%= item.price.toFixed(2) %>
+            </p>
+            <form action="/add-to-cart" method="POST">
+              <input type="hidden" name="itemId" value="<%= item.id %>">
+              <button id="add-to-cart-<%= items.indexOf(item) + 1 %>" type="submit" <%=cartQuantities[item.id]>= 10 ?
+                'disabled' : '' %>>
+                Add to cart
+              </button>
+            </form>
+            <% if (cartQuantities[item.id]>= 10) { %>
+              <p style="color: rgb(116, 116, 116);">Maximum quantity reached</p>
+              <% } %>
+                <% if (showRemoveForm) { %>
+                  <form action="/remove-item" method="POST">
+                    <input type="hidden" name="itemId" value="<%= item.id %>">
+                    <button type="submit">Remove item</button>
+                  </form>
+                  <% } %>
+          </li>
+          <% }) %>
+      </ul>
+      <a href="/cart" id="view-cart-link">View cart</a>
+</body>
+
+</html>

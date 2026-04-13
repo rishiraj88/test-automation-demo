@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        .checkout-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .total-price {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .thank-you-message {
+            font-size: 18px;
+            color: #555;
+        }
+
+        .checkout-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .checkout-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="checkout-container">
+        <div class="total-price">Total price: $<%= totalPrice.toFixed(2) %>
+        </div>
+        <div class="thank-you-message">Thanks for your order! Your order will be ready for digital download soon.</div>
+    </div>
+</body>
+
+</html>
